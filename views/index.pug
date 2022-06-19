@@ -1,0 +1,40 @@
+extends layout
+
+block content
+  main.container
+    .row
+      .col-md-8.offset-md-2.col-sm-12
+        .card
+          .card-header
+            h1 Teste de envio de E-mail
+          .card-body
+            form(action="/", method="post")
+              .mb-3
+                label(for="inputName").form-label Nome: 
+                input(type="text", placeholder="Nome completo", name="nome")#inputName.form-control
+              .mb-3
+                label(for="inputEmail").form-label E-mail: 
+                input(type="text", placeholder="Endereço eletrônico", name="email")#inputEmail.form-control
+              .d-grid.gap-2.d-md-flex.justify-content-md-end
+                input(type="submit", value="Enviar e-mail").btn.btn-dark
+                button(type="reset").btn.btn-secondary Limpar formulário
+          
+            if success_msg
+              br
+              .card.bg-gradient-success
+                .card-header
+                  h3.card-title Email Enviado
+                  .card-tools
+                    button(data-card-widget="remove").btn.btn-tool
+                      i.fas.fa-times
+                .card-body #{success_msg}
+            
+            if error_msg
+              br
+              .card.bg-gradient-danger
+                .card-header
+                  h3.card-title Email não Enviado
+                  .card-tools
+                    button(data-card-widget="remove").btn.btn-tool
+                      i.fas.fa-times
+                .card-body #{error_msg}
